@@ -1,0 +1,17 @@
+
+
+
+
+<form [formGroup]="siesteForm" (ngSubmit)="faireSieste()">
+  <p>Saisir un nom :</p>
+  <p><input class="form-cotrol" required name="name" type="text" (change)="faireSieste()" [formControl]="name"></p>
+  <p>Saisir une durée (entre 1 et 60):</p>
+  <p><input class="form-control" required name="duree" type="number" (change)="faireSieste()" [formControl]="duree"></p>
+  <p><input [disabled]="!siesteForm.valid" type="submit" value="Sieste"></p>
+
+
+</form>
+
+
+
+
