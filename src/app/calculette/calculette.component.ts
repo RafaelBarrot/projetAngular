@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-calculette',
@@ -10,19 +11,33 @@ import {FormControl} from "@angular/forms";
 
 export class CalculetteComponent implements OnInit {
 
+  public calculatrice: FormGroup;
+
   public resultat: Number = 0;
   public operande1: FormControl
-    = new FormControl('');
+    = new FormControl<number>(0,[
+      Validators.min(1),
+      Validators.required
+  ]);
 
   public operateur: FormControl
-    = new FormControl('');
+    = new FormControl<string|null>('+', Validators.required);
 
   public operande2: FormControl
-    = new FormControl('');
+    = new FormControl<number>(0,[
+      Validators.min(1),
+      Validators.required
+  ]);
 
 
 
-  constructor() { }
+  constructor() {
+    this.calculatrice = new FormGroup({
+      operande1:this.operande1,
+      operateur:this.operateur,
+      operande2: this.operande2,
+    })
+  }
 
 
 
